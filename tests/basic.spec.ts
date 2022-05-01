@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { setup, $fetch, isDev, createPage } from '@nuxt/test-utils'
 
-describe('example', async () => {
+describe('app.vue', async () => {
     await setup({
         rootDir: fileURLToPath(new URL('..', import.meta.url)),
         browser: false
@@ -16,7 +16,6 @@ describe('example', async () => {
     })
 
     it('Check input value', async () => {
-        // const wrapper = await $fetch('/')
         const page = await createPage('/')
         const inputValue = await page.$eval('input[data-testid="first-input"]', el => el.value)
         // console.log(inputValue);
@@ -25,18 +24,23 @@ describe('example', async () => {
     })
 
     it('Check button', async () => {
-        // const wrapper = await $fetch('/')
         const page = await createPage('/')
-        const btn = await page.click('#counter')
+        await page.click('#counter')
         const span = await page.$('span')
         const innerSpan = Number(await span.innerText())
 
         expect(innerSpan).toBe(1)
     })
 
-    if (isDev()) {
-        it('[dev] ensure vite client script is added', async () => {
-            expect(await $fetch('/')).toMatch('/_nuxt/@vite/client"')
-        })
-    }
+    it('Check Post btn', async () => {
+        const page = await createPage('/')
+        // TODO complete test fetching
+        // const btn = await page.$('#fetch-btn')
+        // await btn.click()
+        // // const ul = await page.$('ul')
+        // const disabled = await btn.isDisabled()
+        // console.log(await btn.innerText());
+        // expect(disabled).toBe(true)
+    })
+
 })
