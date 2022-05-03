@@ -10,21 +10,7 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="container">
-          <h2>Fetch data</h2>
-          <button
-            id="fetch-btn"
-            :disabled="posts.length > 0"
-            @click="fetchData"
-          >
-            {{ posts.length > 0 ? "Fetched!" : "Fetch Post" }}
-          </button>
-          <Transition>
-            <ul v-if="posts.length > 0">
-              <li v-for="i in posts" :key="i">{{ i.title }}</li>
-            </ul>
-          </Transition>
-        </div>
+        <FetchPosts />
       </div>
     </div>
   </div>
@@ -33,13 +19,6 @@
 const count = ref<number>(0);
 function handleCounter() {
   count.value++;
-}
-// fetch posts
-const posts = ref<{ title: string }[]>([]);
-function fetchData() {
-  fetch("https://jsonplaceholder.typicode.com/todos")
-    .then((response) => response.json())
-    .then((json) => (posts.value = json));
 }
 </script>
 <style>
