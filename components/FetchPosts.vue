@@ -20,7 +20,8 @@
 </template>
 
 <script lang="ts" setup>
-import { usePostStore } from "~~/store/posts";
+import { ref } from "vue";
+import { usePostStore } from "../store/posts";
 
 const postStore = usePostStore();
 const loading = ref(false);

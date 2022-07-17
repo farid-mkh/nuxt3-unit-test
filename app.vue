@@ -9,6 +9,7 @@
           <span class="counter-space">{{ count }}</span>
         </div>
       </div>
+      {{ data ? data : "...." }}
       <div class="col-12">
         <FetchPosts />
       </div>
@@ -16,6 +17,7 @@
   </div>
 </template>
 <script setup lang="ts">
+const { data } = useApi();
 const count = ref<number>(0);
 function handleCounter() {
   count.value++;
